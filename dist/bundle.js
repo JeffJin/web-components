@@ -46,12 +46,17 @@
 
 	// require("!style!css!./style.css");
 	__webpack_require__(1);
-	document.write(__webpack_require__(5));
 
-	var yell = __webpack_require__(6);
-	__webpack_require__(7).on('change', function(hash) {
+	var yell = __webpack_require__(5);
+	__webpack_require__(6).on('change', function(hash) {
 	    yell(hash);
 	});
+
+	var componentFactory = __webpack_require__(8);
+	componentFactory('videoContainerTemplate', 'video-container');
+	componentFactory('sliderTemplate', 'image-slider');
+
+
 
 /***/ },
 /* 1 */
@@ -88,7 +93,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n    background: darkslategrey;\n    color: darkorchid;\n}", ""]);
+	exports.push([module.id, "body {\n    background: darkslategrey !important;\n    color: darkorchid;\n}", ""]);
 
 	// exports
 
@@ -405,23 +410,15 @@
 /* 5 */
 /***/ function(module, exports) {
 
-	module.exports = "It is loaded from content.js";
-
-
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
 	module.exports = function (what) {
 	    alert('Hello ' + what + '!');
 	};
 
 /***/ },
-/* 7 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var EventEmitter = __webpack_require__(8).EventEmitter
+	var EventEmitter = __webpack_require__(7).EventEmitter
 
 	var hashchange = module.exports = new EventEmitter()
 
@@ -435,7 +432,7 @@
 
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -737,6 +734,27 @@
 	  return arg === void 0;
 	}
 
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	module.exports = function (template, name) {
+	    var template = document.querySelector('#' + template);
+	    // Create a prototype for a new element that extends HTMLElement
+	    var proto = Object.create(HTMLElement.prototype);
+
+	    // Setup our Shadow DOM and clone the template
+	    proto.createdCallback = function() {
+	        var root = this.createShadowRoot();
+	        root.appendChild(document.importNode(template.content, true));
+	    };
+
+	    // Register our new element
+	    document.registerElement(name, {
+	        prototype: proto
+	    });
+	};
 
 /***/ }
 /******/ ]);
