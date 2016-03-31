@@ -1,0 +1,172 @@
+<html>
+    <head>
+        <script src="node_modules/webcomponents.js/webcomponents.js"></script>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script type="text/javascript" src="dist/bundle.js" charset="utf-8"></script>
+
+
+        <template id="moduleTemplate1">
+            <style>
+                * {
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    -ms-box-sizing: border-box;
+                    box-sizing: border-box;
+                }
+
+                input.url {
+                    width: 600px;
+                    text-align: center;
+                    margin: 0 auto;
+                    display: block;
+                    margin-bottom: 5px;
+                }
+                video{
+                    width: 600px;
+                    text-align: center;
+                    margin: 0 auto;
+                    display: block;
+                }
+                .container{
+                    border: 1px dashed greenyellow;
+                }
+            </style>
+            <div class="container">
+                <input class="url" type="text" placeholder="Type in video link">
+                <video controls>
+                    <source src="app/resources/videos/small.webm" type="video/webm">
+                    <source src="app/resources/videos/small.mp4" type="video/mp4">
+                    <source src="app/resources/videos/small.ogv" type="video/ogg">
+                </video>
+            </div>
+
+        </template>
+        <template id="moduleTemplate2">
+            <div class="img-slider container">
+                <style>
+                    * {
+                        -webkit-box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                        -ms-box-sizing: border-box;
+                        box-sizing: border-box;
+                    }
+                    .container{
+                        border: 1px dashed greenyellow;
+                    }
+                    #slider {
+                        max-width: 600px;
+                        text-align: center;
+                        margin: 0 auto;
+                    }
+
+                    #overflow {
+                        width: 100%;
+                        overflow: hidden;
+                    }
+
+                    #slides .inner {
+                        width: 400%;
+                    }
+
+                    #slides .inner {
+                        -webkit-transform: translateZ(0);
+                        -moz-transform: translateZ(0);
+                        -o-transform: translateZ(0);
+                        -ms-transform: translateZ(0);
+                        transform: translateZ(0);
+
+                        -webkit-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+                        -moz-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+                        -o-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+                        -ms-transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+                        transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+
+                        -webkit-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+                        -moz-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+                        -o-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+                        -ms-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+                        transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+                    }
+
+                    #slides img {
+                        width: 25%;
+                        float: left;
+                    }
+
+                    #slide1:checked ~ #slides .inner {
+                        margin-left: 0;
+                    }
+
+                    #slide2:checked ~ #slides .inner {
+                        margin-left: -100%;
+                    }
+
+                    #slide3:checked ~ #slides .inner {
+                        margin-left: -200%;
+                    }
+
+                    #slide4:checked ~ #slides .inner {
+                        margin-left: -300%;
+                    }
+
+                    input[type="radio"] {
+                        display: none;
+                    }
+
+                    label {
+                        background: #CCC;
+                        display: inline-block;
+                        cursor: pointer;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 5px;
+                    }
+
+                    #slide1:checked ~ label[for="slide1"],
+                    #slide2:checked ~ label[for="slide2"],
+                    #slide3:checked ~ label[for="slide3"],
+                    #slide4:checked ~ label[for="slide4"] {
+                        background: #333;
+                    }
+                </style>
+                <div id="slider">
+                    <input checked="" type="radio" name="slider" id="slide1" selected="false">
+                    <input type="radio" name="slider" id="slide2" selected="false">
+                    <input type="radio" name="slider" id="slide3" selected="false">
+                    <input type="radio" name="slider" id="slide4" selected="false">
+                    <div id="slides">
+                        <div id="overflow">
+                            <div class="inner">
+                                <img src="./app/resources/images/rock.jpg">
+                                <img src="./app/resources/images/grooves.jpg">
+                                <img src="./app/resources/images/arch.jpg">
+                                <img src="./app/resources/images/sunset.jpg">
+                            </div> <!-- .inner -->
+                        </div> <!-- #overflow -->
+                    </div>
+                    <label for="slide1"></label>
+                    <label for="slide2"></label>
+                    <label for="slide3"></label>
+                    <label for="slide4"></label>
+                </div>
+            </div>
+        </template>
+
+        <div class="module2"></div>
+        <br>
+        <div class="module1"></div>
+        <script>
+            var moduleTmpl1 = document.querySelector('#moduleTemplate1');
+            var host1 = document.querySelector('.module1');
+            var root1 = host1.createShadowRoot();
+            root1.appendChild(document.importNode(moduleTmpl1.content, true));
+
+            var moduleTmpl2 = document.querySelector('#moduleTemplate2');
+            var host2 = document.querySelector('.module2');
+            var root2 = host2.createShadowRoot();
+            root2.appendChild(document.importNode(moduleTmpl2.content, true));
+        </script>
+    </body>
+</html>
