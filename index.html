@@ -4,10 +4,9 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <script type="text/javascript" src="dist/bundle.js" charset="utf-8"></script>
 
 
-        <template id="moduleTemplate1">
+        <template id="videoContainerTemplate">
             <style>
                 * {
                     -webkit-box-sizing: border-box;
@@ -43,7 +42,8 @@
             </div>
 
         </template>
-        <template id="moduleTemplate2">
+
+        <template id="sliderTemplate">
             <div class="img-slider container">
                 <style>
                     * {
@@ -154,19 +154,10 @@
             </div>
         </template>
 
-        <div class="module2"></div>
+        <video-container></video-container>
         <br>
-        <div class="module1"></div>
-        <script>
-            var moduleTmpl1 = document.querySelector('#moduleTemplate1');
-            var host1 = document.querySelector('.module1');
-            var root1 = host1.createShadowRoot();
-            root1.appendChild(document.importNode(moduleTmpl1.content, true));
+        <image-slider></image-slider>
 
-            var moduleTmpl2 = document.querySelector('#moduleTemplate2');
-            var host2 = document.querySelector('.module2');
-            var root2 = host2.createShadowRoot();
-            root2.appendChild(document.importNode(moduleTmpl2.content, true));
-        </script>
+        <script type="text/javascript" src="dist/bundle.js" charset="utf-8"></script>
     </body>
 </html>
