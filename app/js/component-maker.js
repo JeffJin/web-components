@@ -7,10 +7,15 @@ module.exports = function (template, name) {
     proto.createdCallback = function() {
         var root = this.createShadowRoot();
         root.appendChild(document.importNode(template.content, true));
+
     };
 
     // Register our new element
     document.registerElement(name, {
         prototype: proto
+    });
+
+    document.addEventListener('click', function(e) {
+        console.log(e.target.id + ' clicked!');
     });
 };

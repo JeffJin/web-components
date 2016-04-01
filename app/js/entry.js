@@ -10,3 +10,5 @@ var componentFactory = require('./component-maker');
 componentFactory('videoContainerTemplate', 'video-container');
 componentFactory('sliderTemplate', 'image-slider');
 
+
+
